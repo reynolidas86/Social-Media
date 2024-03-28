@@ -10,7 +10,7 @@
             "name": "SocialMediaGUI",
             "request": "launch",
             "mainClass": "SocialMediaGUI",
-            "vmArgs": "--module-path \"C:/Program Files/JavaFX/javafx-sdk-21.0.2/lib\" --add-modules javafx.controls,javafx.fxml,javafx.web",
+            "vmArgs": "--module-path \"C:/Program Files/JavaFX/lib\" --add-modules javafx.controls,javafx.fxml,javafx.web",
            "projectName": "Social-Media_73214ac3"
         },
         {
@@ -18,7 +18,7 @@
             "name": "HelloGUI",
             "request": "launch",
             "mainClass": "HelloGUI",
-            "vmArgs": "--module-path \"C:/Program Files/JavaFX/javafx-sdk-21.0.2/lib\" --add-modules javafx.controls,javafx.fxml,javafx.web",
+            "vmArgs": "--module-path \"C:/Program Files/JavaFX/lib\" --add-modules javafx.controls,javafx.fxml,javafx.web",
             "projectName": "Social-Media_73214ac3"
         },
         {
@@ -26,21 +26,21 @@
             "name": "Driver",
             "request": "launch",
             "mainClass": "PostGenerator",
-            "vmArgs": "--module-path \"C:/Program Files/JavaFX/javafx-sdk-21.0.2/lib\" --add-modules javafx.controls,javafx.fxml,javafx.web",
+            "vmArgs": "--module-path \"C:/Program Files/JavaFX/lib\" --add-modules javafx.controls,javafx.fxml,javafx.web",
             "projectName": "Social-Media_73214ac3"
         },
         {
             "type": "java",
             "name": "Current File",
             "request": "launch",
-            "vmArgs": "--module-path \"C:/Program Files/JavaFX/javafx-sdk-21.0.2/lib\" --add-modules javafx.controls,javafx.fxml,javafx.web",
+            "vmArgs": "--module-path \"C:/Program Files/JavaFX/lib\" --add-modules javafx.controls,javafx.fxml,javafx.web",
             "mainClass": "Post"
         },
         {
             "type": "java",
             "name": "Driver",
             "request": "launch",
-            "vmArgs": "--module-path \"C:/Program Files/JavaFX/javafx-sdk-21.0.2/lib\" --add-modules javafx.controls,javafx.fxml,javafx.web",
+            "vmArgs": "--module-path \"C:/Program Files/JavaFX/lib\" --add-modules javafx.controls,javafx.fxml,javafx.web",
             "mainClass": "Tokenizer",
             "projectName": "Social Media_a94a338a"
         },
@@ -48,7 +48,7 @@
             "type": "java",
             "name": "HelloGUI",
             "request": "launch",
-            "vmArgs": "--module-path \"C:/Program Files/JavaFX/javafx-sdk-21.0.2/lib\" --add-modules javafx.controls,javafx.fxml,javafx.web",
+            "vmArgs": "--module-path \"C:/Program Files/JavaFX/lib\" --add-modules javafx.controls,javafx.fxml,javafx.web",
             "mainClass": "Topic",
             "projectName": "Social Media_a94a338a"
         },
@@ -56,7 +56,7 @@
             "type": "java",
             "name": "SocialMediaGUI",
             "request": "launch",
-            "vmArgs": "--module-path \"C:/Program Files/JavaFX/javafx-sdk-21.0.2/lib\" --add-modules javafx.controls,javafx.fxml,javafx.web", 
+            "vmArgs": "--module-path \"C:/Program Files/JavaFX/lib\" --add-modules javafx.controls,javafx.fxml,javafx.web", 
             "mainClass": "SocialMediaGUI",
             "projectName": "Social Media_a94a338a"
         }

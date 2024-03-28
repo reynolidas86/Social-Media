@@ -1,3 +1,4 @@
+import java.time.LocalTime;
 import java.util.ArrayList;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -115,6 +116,7 @@ public class SocialMediaGUI extends Application {
 		btnStart.setOnAction(event -> startFeed());
 		btnClear.setOnAction(event -> postEngine.loadContent("")); 
 		btnExit.setOnAction(event -> Platform.exit());
+		btnMedia.setOnAction(event -> startMedia());
 
 		HBox buttonBox = new HBox(5, btnStart, btnClear, btnExit);
         HBox buttonBox2 = new HBox(5, btnMedia);
@@ -169,6 +171,8 @@ public class SocialMediaGUI extends Application {
 	/**
 	 * This method will use the PostGenerator to create a list of sample posts.
 	 */
+
+	 String postText = "";
 	private void runTaskToSimulatePosts() {
 		// First get the ten postings
 		ArrayList<Post> samplePosts = PostGenerator.generatePosts(NUMBER_OF_POSTS);
@@ -187,11 +191,12 @@ public class SocialMediaGUI extends Application {
 		            	String content = (String) 
 		            			postEngine.executeScript("document.documentElement.outerHTML");
 						postEngine.loadContent(content + samplePost);
+						postText = postText + (content + samplePost + " ");
 		            }
 		        });
 
 				// Take a 2-3 second break
-				Thread.sleep(2000 + (int) (Math.random() * 1000));
+				Thread.sleep(5000 + (int) (Math.random() * 1000));
 			}
 			catch (InterruptedException e)
 			{
@@ -199,8 +204,71 @@ public class SocialMediaGUI extends Application {
 			}
 		}
 	}
+
+	private void startMedia() {
+		
+		// Create a task 
+		Runnable task = new Runnable() {
+			public void run() {
+				try {
+					runTaskToSimulateMedia();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		};
+
+		// Run the task in a background thread
+		Thread backgroundThread = new Thread(task);
+		// Terminate the running thread if the application exits
+		backgroundThread.setDaemon(true);
+		// Start the thread
+		backgroundThread.start();
+	}
+
+	private void runTaskToSimulateMedia() throws Exception {
+		
+		MediaCollection media = new MediaCollection();
+		for (int i = 0; i < 4; i++) {
+			try {
+				
+				// Get the Status
+				String status = "Getting media " + (i+1) + " in thread " + 
+								Thread.currentThread().getName();
+				
+				// Now, interact with controls on the JavaFx Application Thread
+				Platform.runLater(new Runnable() {
+		            @Override 
+		            public void run() {
+		            	lblMedia.setText(status);
+		            	String content = (String) 
+		            			mediaEngine.executeScript("document.documentElement.outerHTML");
+						//mediaEngine.loadContent(content + Tokenizer.mostUsedTopic(postText) + " " + "<span style= 'font-size: x-small;'>" + LocalTime.now() + "</span><hr />");
+						try {
+							mediaEngine.loadContent(media.getMedia().get(Topic.Bacon).display());
+						} catch (Exception e) {
+							// TODO Auto-generated catch block
+							System.out.println("LOAD CONTENT ERROR");
+						}
+						
+		            }
+					
+		        });
+				Thread.sleep(20000);
+				
+				
+			}
+			catch (InterruptedException e)
+			{
+				e.printStackTrace();
+			}
+		}
+
+	
 	
 	/*******************************************************************/
 	
 	
+}
 }

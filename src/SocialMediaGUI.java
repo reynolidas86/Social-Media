@@ -259,7 +259,7 @@ public class SocialMediaGUI extends Application {
 						try {
 							mediaEngine.loadContent(media.getMedia().get(Topic.valueOf(Tokenizer.mostUsedTopic(postText))).display());
 						} catch (Exception e) {
-							e.printStackTrace();
+							System.out.println("A URL or URI error has occured");
 							
 							try {
 								mediaEngine.loadContent(MediaCollection.getThread().display());

@@ -1,3 +1,4 @@
+import java.net.URISyntaxException;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import javafx.application.Application;
@@ -8,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
@@ -23,6 +25,7 @@ public class SocialMediaGUI extends Application {
 
 	public static void main(String[] args) {
 		Application.launch(args);
+		
 	}
 
 	// GUI elements involved in actions
@@ -59,7 +62,7 @@ public class SocialMediaGUI extends Application {
 	/**
 	 * the number of posts to generate in simulation
 	 */
-	private static final int NUMBER_OF_POSTS = 12;
+	private static final int NUMBER_OF_POSTS = 120;
 	
 	/**
 	 * the start method of the JavaFX GUI
@@ -114,9 +117,11 @@ public class SocialMediaGUI extends Application {
         Button btnMedia = new Button("Show Media");
 		
 		btnStart.setOnAction(event -> startFeed());
-		btnClear.setOnAction(event -> postEngine.loadContent("")); 
+		btnClear.setOnAction(event -> clear()); 
 		btnExit.setOnAction(event -> Platform.exit());
 		btnMedia.setOnAction(event -> startMedia());
+
+		
 
 		HBox buttonBox = new HBox(5, btnStart, btnClear, btnExit);
         HBox buttonBox2 = new HBox(5, btnMedia);
@@ -132,6 +137,11 @@ public class SocialMediaGUI extends Application {
 		mainPane.getChildren().add(postBox);
 		mainPane.getChildren().add(mediaBox);
 		
+	}
+
+	public void clear(){
+		postEngine.loadContent("");
+		postText = "";
 	}
 
 	/** Sets up the stage and shows (launches) it
@@ -191,12 +201,13 @@ public class SocialMediaGUI extends Application {
 		            	String content = (String) 
 		            			postEngine.executeScript("document.documentElement.outerHTML");
 						postEngine.loadContent(content + samplePost);
-						postText = postText + (content + samplePost + " ");
+						postText = postText + (samplePost + " ");
+
 		            }
 		        });
 
 				// Take a 2-3 second break
-				Thread.sleep(5000 + (int) (Math.random() * 1000));
+				Thread.sleep(2000 + (int) (Math.random() * 1000));
 			}
 			catch (InterruptedException e)
 			{
@@ -213,7 +224,7 @@ public class SocialMediaGUI extends Application {
 				try {
 					runTaskToSimulateMedia();
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				}
 			}
@@ -228,9 +239,9 @@ public class SocialMediaGUI extends Application {
 	}
 
 	private void runTaskToSimulateMedia() throws Exception {
-		
+		System.out.println(postText);
 		MediaCollection media = new MediaCollection();
-		for (int i = 0; i < 4; i++) {
+		for (int i = 0; i < 30; i++) {
 			try {
 				
 				// Get the Status
@@ -244,18 +255,24 @@ public class SocialMediaGUI extends Application {
 		            	lblMedia.setText(status);
 		            	String content = (String) 
 		            			mediaEngine.executeScript("document.documentElement.outerHTML");
-						//mediaEngine.loadContent(content + Tokenizer.mostUsedTopic(postText) + " " + "<span style= 'font-size: x-small;'>" + LocalTime.now() + "</span><hr />");
+					//	mediaEngine.loadContent(content + Tokenizer.mostUsedTopic(postText) + " " + "<span style= 'font-size: x-small;'>" + LocalTime.now() + "</span><hr />");
 						try {
-							mediaEngine.loadContent(media.getMedia().get(Topic.Bacon).display());
+							mediaEngine.loadContent(media.getMedia().get(Topic.valueOf(Tokenizer.mostUsedTopic(postText))).display());
 						} catch (Exception e) {
-							// TODO Auto-generated catch block
-							System.out.println("LOAD CONTENT ERROR");
+							e.printStackTrace();
+							
+							try {
+								mediaEngine.loadContent(MediaCollection.getThread().display());
+							} catch (Exception e1) {
+								
+								e1.printStackTrace();
+							}
 						}
 						
 		            }
 					
 		        });
-				Thread.sleep(20000);
+				Thread.sleep(10000);
 				
 				
 			}

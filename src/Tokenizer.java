@@ -48,7 +48,7 @@ public class Tokenizer {
 		for (Entry<String, Integer> entry : topics.entrySet()) {
 			// Compare to the previous max value.  
 			// If compareTo yields a positive number, the value is greater
-			if (entry.getValue().compareTo(maxValue) > 0) {
+			if (entry.getValue().compareTo(maxValue) >= 0) {
 				maxValue = entry.getValue();
 				maxKey = entry.getKey();
 			}

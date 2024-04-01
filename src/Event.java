@@ -1,7 +1,7 @@
 public class Event extends MediaItem{
 
-    public Event(String title, String description, String url) throws Exception{
-        super(title, description, url);
+    public Event(String title, String description) throws Exception{
+        super(title, description);
     }
 
     public String display(){

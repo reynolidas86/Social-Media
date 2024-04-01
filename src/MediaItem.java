@@ -7,7 +7,7 @@ public abstract class MediaItem{
     protected String description;
     
 
-    public MediaItem(String title, String description) throws Exception{
+    public MediaItem(String title, String description){
         this.title = title;
         this.description = description;
         
